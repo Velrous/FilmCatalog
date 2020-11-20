@@ -1,0 +1,52 @@
+﻿@model FilmEditModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-10 col-md-10 col-lg-8 col-xl-6">
+            <h3>Редактирование фильма</h3>
+            <form asp-action="edit" method="post" class="text-center" enctype="multipart/form-data" asp-route-id="@Model.Id">
+                <div class="form-group">
+                    <div class="m-2">
+                        <label asp-for="Title" class="font-weight-bold"></label>
+                        <input asp-for="Title" class="form-control text-center" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Desc" class="font-weight-bold"></label>
+                        <textarea asp-for="Desc" class="form-control" rows="6"></textarea>
+                        <span asp-validation-for="Desc" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Year" class="font-weight-bold"></label>
+                        <input asp-for="Year" class="form-control text-center" pattern="[0-9]{,4}" type="text"/>
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Director" class="font-weight-bold"></label>
+                        <input asp-for="Director" class="form-control text-center" type="text" />
+                        <span asp-validation-for="Director" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="ImageNew" class="font-weight-bold"></label>
+                        <div class="row justify-content-center">
+                            <input asp-for="ImageNew" type="file" accept="image/*">
+                        </div>
+                    </div>
+                    <input asp-for="UserEmail" class="form-control collapse">
+                    <input asp-for="Image" class="form-control collapse">
+                    <div>
+                        <input type="submit" class="btn btn-dark btn-outline-light" value="Сохранить" />
+                    </div>
+                </div>
+                @section Scripts {
+                    <partial name="_ValidationScriptsPartial" />
+                }
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

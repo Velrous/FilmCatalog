@@ -1,0 +1,48 @@
+﻿@model IndexViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10">
+            <h1>Список фильмов</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>Название</th>
+                    <th>Год</th>
+                    <th>Режиссёр</th>
+                    <th>Описание</th>
+                </tr>
+                @foreach (Film film in Model.Films)
+                {
+                    <tr>
+                        <td>@film.Title</td>
+                        <td>@film.Year</td>
+                        <td>@film.Director</td>
+                        <td><a class="btn btn-dark btn-outline-light" href="~/Film/Info/?filmId=@film.Id" role="button">Открыть</a></td>
+                    </tr>
+                }
+            </table>
+            @if (Model.PageViewModel.HasPreviousPage)
+            {
+                <a asp-action="Index"
+                   asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+                   class="btn btn-outline-dark">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    Назад
+                </a>
+            }
+            @if (Model.PageViewModel.HasNextPage)
+            {
+                <a asp-action="Index"
+                   asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+                   class="btn btn-outline-dark">
+                    Вперед
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            }
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

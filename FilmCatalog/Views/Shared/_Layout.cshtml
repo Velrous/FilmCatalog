@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/position.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/Home/Index">Film Catalog</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="row">
+                        <a class="btn btn-dark btn-outline-light mr-2" href="/Film/Add" role="button">Добавить фильм</a>
+                        <a class="btn btn-dark btn-outline-light mr-2"> @User.Identity.Name</a>
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <input class="btn btn-dark btn-outline-light" type="submit" value="Выйти" />
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <a class="btn btn-dark btn-outline-light mr-1" href="/Account/Login" role="button">Войти</a>
+                        <a class="btn btn-dark btn-outline-light" href="/Account/Register" role="button">Регистрация</a>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+        @RenderBody()
+    <footer class="footer">
+        <nav class="navbar" style="background-color: #f7f7f7;">
+            <label>Development by Velrous</label>
+        </nav>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
